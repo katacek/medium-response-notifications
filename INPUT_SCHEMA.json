@@ -1,6 +1,6 @@
 {
   "title": "Google play reviews",
-  "description": "This actor scrapes app reviews from Google Play.",
+  "description": "This actor sends notification about medium post responses.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {
@@ -12,13 +12,13 @@
       "editor": "json"
     },
     "slackToken": {
-      "title": "Token",
+      "title": "Slack token",
       "type": "string",
       "description": "Slack token",
       "editor": "textfield"
     },
     "channel": {
-      "title": "Channel",
+      "title": "Slack channel",
       "type": "string",
       "description": "Channel where the message will be sent (ie #general)",
       "prefill": "#general",
