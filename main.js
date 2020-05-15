@@ -1,9 +1,10 @@
 const Apify = require('apify');
 
 Apify.main(async () => {
+    
     const input = await Apify.getInput();
     
-    //const input = {articleId: ['cd3220e9abf5','50417cc20994' ]}
+    //const input = {articleId: ['5b61524e7919']}
     
     const dateFrom = new Date();
     dateFrom.setHours(0,0,0,0);
@@ -44,6 +45,11 @@ Apify.main(async () => {
         newPosts[articleId] = [];
         let payload = await getResponse(articleId);
         // Object.keys: get list of keys from dictionary
+
+        if (payload.references.Post === undefined)
+            {console.log( `Article id: ${articleId} has no responses.` )}
+            continue;
+
         Object.keys(payload.references.Post).forEach(x => postArray.push(payload.references.Post[x]));
        
 
@@ -68,7 +74,9 @@ Apify.main(async () => {
         console.log(`id:${articleId} - responses:${postArray.length-1}`);
         // filter, and then apply ... ie get individual elements from array to push (adding elements to list)
         // if not using..., concat () must have been used (adding list to list)
-        newPosts[articleId].push(...postArray.filter(x => x.createdAt >= dateFromValue));
+        if (postArray.length>0){
+            newPosts[articleId].push(...postArray.filter(x => x.createdAt >= dateFromValue));
+        }
     }
 
     console.log(newPosts); 
@@ -97,6 +105,8 @@ Apify.main(async () => {
             await Apify.call('katerinahronik/slack-message', slackMessageActor)
             }
     }
-
+    
+    if (Object.keys(newPosts).length !== 0){
     await Apify.setValue('OUTPUT', newPosts);
+    }
 }); 
