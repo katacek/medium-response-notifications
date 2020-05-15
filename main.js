@@ -65,7 +65,7 @@ Apify.main(async () => {
             token = getNested(payload, 'paging', 'next', 'to');
         }
 
-        console.log(`id:${articleId} - responses:${postArray.length}`);
+        console.log(`id:${articleId} - responses:${postArray.length-1}`);
         // filter, and then apply ... ie get individual elements from array to push (adding elements to list)
         // if not using..., concat () must have been used (adding list to list)
         newPosts[articleId].push(...postArray.filter(x => x.createdAt >= dateFromValue));
