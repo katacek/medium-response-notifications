@@ -6,6 +6,7 @@ Apify.main(async () => {
     //const input = {articleId: ['cd3220e9abf5','50417cc20994' ]}
     
     const dateFrom = new Date();
+    dateFrom.setHours(0,0,0,0);
     const dateFromValue = dateFrom.valueOf();
 
 
