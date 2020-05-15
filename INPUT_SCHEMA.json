@@ -1,0 +1,30 @@
+{
+  "title": "Google play reviews",
+  "description": "This actor scrapes app reviews from Google Play.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "articleId": {
+      "title": "Article ids",
+      "type": "array",
+      "description": "List of articles ids",
+      "prefill": ["cd3220e9abf5", "50417cc20994" ],
+      "editor": "json"
+    },
+    "slackToken": {
+      "title": "Token",
+      "type": "string",
+      "description": "Slack token",
+      "editor": "textfield"
+    },
+    "channel": {
+      "title": "Channel",
+      "type": "string",
+      "description": "Channel where the message will be sent (ie #general)",
+      "prefill": "#general",
+      "example": "#general",
+      "editor": "textfield"
+  }
+  },
+  "required": ["articleId"]
+}
