@@ -48,8 +48,10 @@ Apify.main(async () => {
         // Object.keys: get list of keys from dictionary
 
         if (payload.references.Post === undefined)
-            {console.log( `Article id: ${articleId} has no responses.` )}
-            continue;
+            {
+                console.log( `Article id: ${articleId} has no responses.` );
+                continue;
+            }
 
         Object.keys(payload.references.Post).forEach(x => postArray.push(payload.references.Post[x]));
        
