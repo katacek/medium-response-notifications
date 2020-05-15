@@ -8,6 +8,7 @@ Apify.main(async () => {
     
     const dateFrom = new Date();
     dateFrom.setHours(0,0,0,0);
+    console.log(dateFrom)
     const dateFromValue = dateFrom.valueOf();
 
 
