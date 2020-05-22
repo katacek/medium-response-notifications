@@ -7,7 +7,7 @@
     "articleId": {
       "title": "Article ids",
       "type": "array",
-      "description": "List of articles ids",
+      "description": "List of articles ids, id = part of article url address after the last slash",
       "prefill": ["cd3220e9abf5", "50417cc20994" ],
       "editor": "json"
     },
