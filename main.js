@@ -106,7 +106,7 @@ Apify.main(async () => {
         postArrays.push(...postArray);
     }
 
-    console.log(newPosts); 
+    //console.log(newPosts); 
 
     let slackMessages = []
     Object.keys(newPosts).forEach(x => newPosts[x].forEach(y =>
@@ -116,7 +116,7 @@ Apify.main(async () => {
             slackMessages.push(`Your post "${title}" on medium has new response https://medium.com/p/${y.id}`);
         }));
     
-    console.log(slackMessages); 
+    //console.log(slackMessages); 
 
     const slackToken = input.slackToken
     const emailTo = input.emailTo;
@@ -135,7 +135,7 @@ Apify.main(async () => {
 
             await Apify.call('katerinahronik/slack-message', slackMessageActor)
 
-            console.log('Slack notification sent.');
+            console.log(`Slack notification: "${message}" sent.`);
         } 
     
         if (emailTo) {  
@@ -148,7 +148,7 @@ Apify.main(async () => {
 
             await Apify.call('apify/send-mail', emailActorInput)
 
-            console.log('Notification email sent.');
+            console.log(`Email notification: "${message}" sent.`);
         }
 
     }
