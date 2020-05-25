@@ -29,8 +29,6 @@ Apify.main(async () => {
         articleIds = input.articleUrl.map(x => x.split('-').last())
     }
     
-    console.log(articleIds)
-
     const dateFrom = new Date();
     dateFrom.setHours(0,0,0,0);
     //console.log(dateFrom)
