@@ -3,7 +3,11 @@ const Apify = require('apify');
 Apify.main(async () => {
     
     const input = await Apify.getInput();
-    
+
+    if (input.articleUrl == undefined && input.articleId == undefined) {
+        throw(new Error('input.articleUrl or input.articleId must be provided'))
+    }
+
     //const input = {articleId: ['5b61524e7919']}
     
     const dateFrom = new Date();
@@ -34,14 +38,25 @@ Apify.main(async () => {
         const resJson = JSON.parse(resText.match(/{"success":true.*/)[0]);
         return resJson.payload;
 
-        
     }
 
-    
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+
+    let articleIds = [];
+   
+    if (input.articleId) {
+        articleIds = input.articleId;
+    }
+    else
+    {
+        articleIds = input.articleUrl.map(x => x.split('-').last())
+    }
 
     let postArray = [];
     const newPosts = {};
-    for (articleId of input.articleId)
+    for (articleId of articleIds)
     {
         newPosts[articleId] = [];
         let payload = await getResponse(articleId);
