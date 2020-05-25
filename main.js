@@ -123,8 +123,6 @@ Apify.main(async () => {
     
     for (message of slackMessages)
     {
-        console.log(message)
-
         if (slackToken) {  
 
          const slackMessageActor = {
