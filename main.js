@@ -12,7 +12,7 @@ Apify.main(async () => {
 
     //const input = {articleId: ['5b61524e7919']}
     // const input = {
-    //     articleUrl: ['https://humanparts.medium.com/my-journey-toward-radical-body-positivity-3412796df8ff']
+    //     articleUrl: ['https://humanparts.medium.com/my-journey-toward-radical-body-positivity-3412796df8ff', 'https://forge.medium.com/the-birds-gave-me-my-focus-back-b4d8f00c7378']
     // }
 
     Array.prototype.last = function(){
@@ -61,11 +61,12 @@ Apify.main(async () => {
 
     }
 
-    let postArray = [];
+    let postArrays = [];
     const newPosts = {};
     for (articleId of articleIds)
     {
         newPosts[articleId] = [];
+        let postArray = [];
         let payload = await getResponse(articleId);
         // Object.keys: get list of keys from dictionary
 
@@ -102,23 +103,27 @@ Apify.main(async () => {
         if (postArray.length>0){
             newPosts[articleId].push(...postArray.filter(x => x.createdAt >= dateFromValue));
         }
+        postArrays.push(...postArray);
     }
 
-    //console.log(newPosts); 
+    console.log(newPosts); 
 
     let slackMessages = []
     Object.keys(newPosts).forEach(x => newPosts[x].forEach(y =>
         {
-            let title= postArray.find(z=>x==z.id).title;
+            let title= postArrays.find(z=>x==z.id).title;
 
             slackMessages.push(`Your post "${title}" on medium has new response https://medium.com/p/${y.id}`);
         }));
     
-   
+    console.log(slackMessages); 
+
     const slackToken = input.slackToken
     const emailTo = input.emailTo;
     
-    for (message of slackMessages) {
+    for (message of slackMessages)
+    {
+        console.log(message)
 
         if (slackToken) {  
 
