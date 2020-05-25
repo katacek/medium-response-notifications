@@ -82,7 +82,7 @@ Apify.main(async () => {
         }
     }
 
-    console.log(newPosts); 
+    //console.log(newPosts); 
 
     let slackMessages = []
     Object.keys(newPosts).forEach(x => newPosts[x].forEach(y =>
