@@ -11,6 +11,7 @@ Field |	Type	| Description
 articleId|	*Array*|	(required) List of articles ids (i.e. ["cd3220e9abf5", "50417cc20994" ])
 slackToken|	*String*|	(optional) Slack token
 channel|	*String*|	(optional) Channel where the message will be sent (ie #general)
+emailTo|	*String*|	(optional) Email address for sending the notification
 
 ## How to run
 
