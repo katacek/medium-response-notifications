@@ -8,7 +8,7 @@
       "title": "Article url",
       "type": "array",
       "description": "Article url on medium.com",
-      "prefill": "https://blog.apify.com/get-custom-web-scraping-solutions-from-certified-developers-on-apify-marketplace-f1fe0302bcd",
+      "prefill": ["https://blog.apify.com/get-custom-web-scraping-solutions-from-certified-developers-on-apify-marketplace-f1fe0302bcd"],
       "editor": "stringList"
     },
     "articleId": {
