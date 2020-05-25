@@ -21,7 +21,7 @@ Apify.main(async () => {
 
     let articleIds = [];
    
-    if (input.articleId !== '') {
+    if (input.articleId != undefined) {
         articleIds = input.articleId;
     }
     else
