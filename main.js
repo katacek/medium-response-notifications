@@ -8,7 +8,24 @@ Apify.main(async () => {
         throw(new Error('input.articleUrl or input.articleId must be provided'))
     }
 
+    console.log(input.articleUrl)
+
     //const input = {articleId: ['5b61524e7919']}
+    //const input = { articleUrl: ['https://humanparts.medium.com/my-journey-toward-radical-body-positivity-3412796df8ff'] }
+
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+
+    let articleIds = [];
+   
+    if (input.articleId) {
+        articleIds = input.articleId;
+    }
+    else
+    {
+        articleIds = input.articleUrl.map(x => x.split('-').last())
+    }
     
     const dateFrom = new Date();
     dateFrom.setHours(0,0,0,0);
@@ -38,20 +55,6 @@ Apify.main(async () => {
         const resJson = JSON.parse(resText.match(/{"success":true.*/)[0]);
         return resJson.payload;
 
-    }
-
-    Array.prototype.last = function(){
-        return this[this.length - 1];
-    };
-
-    let articleIds = [];
-   
-    if (input.articleId) {
-        articleIds = input.articleId;
-    }
-    else
-    {
-        articleIds = input.articleUrl.map(x => x.split('-').last())
     }
 
     let postArray = [];
