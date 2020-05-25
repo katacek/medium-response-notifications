@@ -8,7 +8,7 @@ Apify.main(async () => {
     
     const dateFrom = new Date();
     dateFrom.setHours(0,0,0,0);
-    console.log(dateFrom)
+    //console.log(dateFrom)
     const dateFromValue = dateFrom.valueOf();
 
 
@@ -94,6 +94,7 @@ Apify.main(async () => {
     
    
     const slackToken = input.slackToken
+    const emailTo = input.emailTo;
     
     for (message of slackMessages) {
 
@@ -106,7 +107,23 @@ Apify.main(async () => {
             }
 
             await Apify.call('katerinahronik/slack-message', slackMessageActor)
+
+            console.log('Slack notification sent.');
+        } 
+    
+        if (emailTo) {  
+           
+            const emailActorInput = {
+                "to": emailTo,
+                "subject": "New response on medium.com",
+                "text": message
             }
+
+            await Apify.call('apify/send-mail', emailActorInput)
+
+            console.log('Notification email sent.');
+        }
+
     }
     
     if (Object.keys(newPosts).length !== 0){

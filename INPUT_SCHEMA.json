@@ -24,7 +24,14 @@
       "prefill": "#general",
       "example": "#general",
       "editor": "textfield"
-  }
+    },
+    "emailTo": {
+      "title": "Email to",
+      "type": "string",
+      "description": "Email address for sending the notification.",
+      "prefill": "user@company.com",
+      "editor": "textfield"
+    }
   },
   "required": ["articleId"]
 }
