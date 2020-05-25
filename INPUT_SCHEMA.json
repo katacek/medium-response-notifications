@@ -40,5 +40,5 @@
       "editor": "textfield"
     }
   },
-  "required": ["articleId"]
+  "required": []
 }
