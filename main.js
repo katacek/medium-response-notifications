@@ -1,4 +1,5 @@
 const Apify = require('apify');
+const moment = require('moment');
 
 Apify.main(async () => {
     
@@ -21,7 +22,7 @@ Apify.main(async () => {
 
     let articleIds = [];
    
-    if (input.articleId != undefined) {
+    if (input.articleId != undefined && input.articleId != '') {
         articleIds = input.articleId;
     }
     else
@@ -29,11 +30,8 @@ Apify.main(async () => {
         articleIds = input.articleUrl.map(x => x.split('-').last())
     }
     
-    const dateFrom = new Date();
-    dateFrom.setHours(0,0,0,0);
-    //console.log(dateFrom)
-    const dateFromValue = dateFrom.valueOf();
-
+    const yesterdayStart = moment().subtract(1, 'days').startOf('day').valueOf()
+    const yesterdayEnd = moment().subtract(1, 'days').endOf('day').valueOf()
 
     function getNested(obj, ...args) {
         return args.reduce((obj, level) => obj && obj[level], obj)
@@ -99,7 +97,8 @@ Apify.main(async () => {
         // filter, and then apply ... ie get individual elements from array to push (adding elements to list)
         // if not using..., concat () must have been used (adding list to list)
         if (postArray.length>0){
-            newPosts[articleId].push(...postArray.filter(x => x.createdAt >= dateFromValue));
+            newPosts[articleId].push(...postArray.filter(x => (x.createdAt >= yesterdayStart && x.createdAt<= yesterdayEnd)
+            ));
         }
         postArrays.push(...postArray);
     }
