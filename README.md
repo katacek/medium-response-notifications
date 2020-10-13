@@ -3,7 +3,7 @@
 Apify actor to check for new responses to [Medium.com](https://medium.com/) posts. Enables the set up of notifications for any Medium members so you never miss posts from users or followers.
 If [Slack](https://slack.com/intl/en-cz/) token and channel is provided, it sends a notification message for each new response by calling an existing [Slack Message Generator](https://apify.com/katerinahronik/slack-message) Actor. Equally, if an email address is provided, it sends a notification email for each new response by calling an existing [Send Mail](https://apify.com/apify/send-mail) Actor.
 
-Check the tutorial video on [youtube.com](https://www.youtube.com/watch?v=VDlrxbs33Bc&feature=youtu.be).
+Check the step by step tutorial in [YouTube Video](https://www.youtube.com/watch?v=VDlrxbs33Bc&feature=youtu.be).
 
 ## Input 
 
