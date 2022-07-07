@@ -4,7 +4,7 @@
 	"description": "This is a boilerplate of an Apify actor.",
 	"dependencies": {
 		"apify": "^0.20.4",
-		"moment": "^2.26.0"
+		"moment": "^2.29.4"
 	},
 	"devDependencies": {},
 	"scripts": {
